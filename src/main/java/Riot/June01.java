@@ -1,65 +1,68 @@
 package Riot;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Scanner;
 
 public class June01 {
-    //gradle version error 떠서 한시간 고생함.
-    //알림창으로 뜨는 pre kit? 이거 always download 하니까 or 다시 클래스 만드니까 스무스하게 됨
-
-    /**이렇게 하면 색깔주석, 기울기까지 주네.
-     *
-     * 컨트롤 s 시험 save all
+    //gradle version error
+    //알림창 pre kit - always download
+    /**색깔주석,
      */
     public static void main(String[] args) {
 
+        // HEllo WORLD!
+        //  System.out.println("HelloWorld!");
+        //  System.out.println("HelloWordl!".length());
+        //  System.out.println("Hello\nWorld!");
 
-       // System.out.println("HelloWorld!");
-      //  System.out.println("HelloWordl!".length());
-      //  System.out.println("Hello\nWorld!");
+        /* 앵무새 만들기
+        Scanner jake = new Scanner(System.in);
+        String ab = jake.nextLine();
+        System.out.println(ab);
+        */
 
-        //Scanner jake = new Scanner(System.in);
-        // String ab = jake.nextLine();
-        //앵무새 만들기 run 하는법을 잘 모르겠음. 써지긴하는데.
+         //.replace(A,B)
+         //System.out.println("Hello June...Bye June...".replace("June","Tom"));
 
-      //  System.out.println("Hello June...Bye June...".replace("June","Tom"));
-      /*  int at=3;
-        int a=(int)5.1234;
+
+/*      int k=3;
+        int a=(int)5.1234;       < Explicit conversion 강제
         double c=4;
-        float d = 5.655F;
-        System.out.println(at);
+        float d = 5.655F;        < 상수 값이 기본 double 이므로 F 붙여줘야 인식함
+        System.out.println(k);
         System.out.println(a);
         System.out.println(c);
         System.out.println(d);
 */
+/*      // "+변수+" 로 "~" 안에서 String 변수값 구별!
+        //.replace 보다 효율적
+          String name = "Tom";
+          System.out.println("Hello "+name+"! It\'s nice to meet you, "+name+"! Bye "+name+"!");
+          */
 
-      //  String name = "Tom";
-      //  System.out.println("Hello "+name+"! It\'s nice to meet you, "+name+"! Bye "+name+"!");
-
-/*String ab = "24";
-        int pi = Integer.parseInt(ab);            << String to int casting
-        System.out.println(pi+6);
+          //String to int Casting! << Googling 활용
+          //String으로 들어온 정보에 연산을 해야할 때 이용하자
+/*         String age = "24";
+           int realage = Integer.parseInt(age);           // << String to int casting
+           System.out.println(realage+2);
 */
+
+       //int to String Casting << Googling
 /*     int c = 33;
-       String ad = Integer.toString(c);             << int to String casting
-       System.out.println(ad+6);                -> 33+6=336 (!39)
-*/
+       String age = Integer.toString(c);           //  << int to String casting
+       System.out.println(age+6);              //  -> 33+6=336 (!39) 문자열로 인식한다.
+ */
 
-        //디버그 부분 버전달라서 일단 패스
-
-        //compile 부분 파일값 program 건드리는거라 일단 패스
-
-        //Conversion 순서
-        // byte - short - int - long - float - double
+        // Conversion 순서
+        // byte -> short -> int -> long -> float -> double
 
      /*           int a = 3 ;
                 float b = 3.1415F;
-        System.out.println(a+b);              int->float  implicit conversion 3->3.0
+        System.out.println(a+b);             // int->float  implicit conversion 3->3.0
                                                                 6.1415 */
 
-        //연산자부터 ㄱㄱ
 
-
-        System.out.println("hi");
 
     }
 }
