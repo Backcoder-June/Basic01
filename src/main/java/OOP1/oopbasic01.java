@@ -449,6 +449,7 @@ public class oopbasic01{
 // 2. super class 에서는 기본생성자만 주고(안만들고), sub class 에서 생성자 만들어 쓰기
 
        // overriding - 생성자 있건없건 된다.
+      // 원래 method 랑 같은 이름, 같은 메소드 타입, 같은 parameter signature 여야함
 /*
 class calculator{
     int a, b;
@@ -489,11 +490,13 @@ public class oopbasic01{
     }
 }
 */
+
+/*       // return 으로의 Overriding
          //print 로 된걸 return 으로 overriding 하고 싶을때는 그냥 둘다 return 으로 해야한다.
          // 한쪽만 print 로 하면 error 난다.
          // 그럼 사실상 그냥 super 에만 method 선언하고 그대로 상속 하면 되겠지만,
          // 굳이 sub 에서 overriding 을 하자면, super.method 이용해서 중복 없애주면 된다.
-/*
+
           class calculator{
            int a, b;
            public calculator(int c, int d){
@@ -535,6 +538,10 @@ public class oopbasic01{
 }
 */
 /*
+      // Overloading - 메소드 같은이름으로 쓸수있게 해주는 거
+      // parameter 의 signature 가 다르면, method 같은 이름으로 해도, java 가 자동으로 해당 signature의 method를 호출해줌
+      // parameter 는 같고, method type 만 다르면, Error ( java : 누굴 호출하라고?)
+      // parameter 같고 , method 도 똑같은건 -> overriding
     class cal{
         int a, b;
         int c = 0;              // sum 에서는 this.c 더해야하므로 a,b만 있을 때 c 값을 전역변수에서 0 으로 선언해둔다.
@@ -564,6 +571,11 @@ public class oopbasic01{
         }
     }
 */
+
+    // import - package 에서 다른 package 의 class 가져오기
+    // import path.Riot02.*; - 전체 class / import path.riot02.calculator; - 특정 class
+    // 같은 package 안에서는, 그냥 class 건 public class 건 다 연결되어 있다. 걍 가져다 쓰면 됨.
+    // 다른 package 일때, public class 가 아닌, 그냥 class 는 import 가 제한됬다. (실험)
 
 
 
