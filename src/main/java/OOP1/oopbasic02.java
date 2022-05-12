@@ -144,3 +144,104 @@ class cal {
     static final double PI = 3.14;     // final field - class 내, class 밖에서도 무조건 고정값
 }
 */
+
+          // interface (본체x) - implements => interface 안의 method 들 반드시 구체적으로 구현
+          // interface 의 member(method, 변수)는 반드시 public
+/*
+interface i{
+    public void z();}
+
+class A implements i{
+    public void z(){}
+}
+*/
+/*
+interface promise{                           //메소드 3개 쓸거고, 변수 3개 들어갈거야 약속!
+    public void set(int a, int b, int c);
+    public void sum();
+    public void multi();
+
+          }
+class cal implements promise{          //cal 만드는 개발자 : 오케이 interface 에 맞춰서 개발중
+    int a, b, c;
+    public void set(int a, int b, int c){
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    public void sum(){
+        System.out.println(this.a + this.b + this.c);
+    }
+    public void multi(){
+        System.out.println(this.a*this.b*this.c);
+    }
+}
+
+public class oopbasic02{            //cal 사용하는 부분 개발자 : 오케이 cal 설정은 {} 형식만 맞춰두고 사용부분 개발중
+    public static void main(String[] args) {
+        cal c1 = new cal();
+        c1.set(1,2,3);
+        c1.sum();
+        c1.multi();
+    }
+}
+ */
+// 즉, interface 로 형식만 정해서 약속 해두고, 거기에 맞춰 각 개발자의 부분을 동시에 진행하기 위함
+
+//하나의 class 가 여러개 interface 를 implements 할 수 있다
+/*
+interface i1{public void x();}
+interface i2{public void y();}
+
+class cal implements i1, i2{                   // , 로 두개 동시에 implements
+    public void x(){}
+    public void y(){}                         //각 interface 에 있는 method 모두 구체적으로 구현해야 한다.
+}
+ */
+
+//interface 끼리 상속 가능
+/*
+interface i1{public void x();}
+
+interface i2 extends i1{
+    public void y();
+}
+class cal implements i2{
+    public void x(){}
+    public void y(){}
+}
+ */
+
+// class 의 다형성 - class를 instance화 시킬 때, 그 instance를 담는 class는 1.자기자신(원래) 2.super class(부모) 도 가능
+
+/*
+class A{
+    public String x(){return "A";}
+}
+class B extends A{
+    public String x(){return "B";}
+    public String y(){return "y";}
+}
+class C extends A{
+    public String x(){return "C";}
+}
+
+public class oopbasic02 {
+    public static void main(String[] args) {
+
+        A c1 = new B();        //class B 객체를 c1 이라는 instance 로 만들고, 그 instance 는 class A(부모)에 담는다.
+        A c2 = new C();
+                                         //담는 class A 기준
+        System.out.println(c1.x());     //method 있는건 overriding 된 sub class 거로 가져온다.
+        //System.out.println(c1.y());   //method 없는건 못가져온다.
+        System.out.println(c2.x());
+    }
+}
+*/
+// 이렇게 A class 로 묶어줌으로서 => execute 같은 명령어를 공통으로 적용시킬 수 있다. (묶어주기!)
+// 필요한 method 를 가진 super class 에 담아서 집중하게 하기
+// 그 필요한 method 외에 다른 기능들은 사용하지 못하게 방지 하기
+
+//interface 도 super class 와 마찬가지로, instance화 할 때, 그 instance 를 담는 data type 으로 쓰일 수 있다.
+//interface 도 super class 와 마찬가지로 작동한다.
+
