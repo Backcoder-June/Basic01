@@ -243,10 +243,15 @@ public class oopbasic03 {
 // (기본적으로 java 제공 표준Exception 을 사용하길 권장)
 // 특별하게 필요한 Exception 기능이 있을때, 만들어서 쓴다.
 /*
+
+// class RuntimeException{
+// RuntimeException()
+// RuntimeException(String message)   이런게 기본으로 깔려있는거지 -> 상속
+
 class divideException extends RuntimeException{
     int a, b;
     divideException(){        //기본생성자 (지워지니까)
-        super();
+        super();              //RuntimeException 의 기본생성자를 super 로 가져오는 것
     }
     divideException(String message){         //필요한 생성자
         super(message);}
