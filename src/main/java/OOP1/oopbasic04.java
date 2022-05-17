@@ -226,3 +226,152 @@ enum Fruit {
         }
 }
 */
+
+// Reference 참조형 data type  VS  기본형 data type (복제)
+/*
+class A{
+    public int ID;
+    A(int ID){
+        this.ID = ID;}
+
+}
+
+
+public  class oopbasic04 {
+
+
+    public static void runvalue(){                 //기본형 data type
+        int a = 1;
+        int b = a;                 // a=1 을 복제. b 값으로 줌. -> 원본 a=1 의 값을 그대로 유지함
+        b = 2 ;                    // 원본 값을 유지하므로, 여기에 무슨 값을 주든 그대로 유지 됨
+        System.out.println(a);}
+    public static void runrefer(){          // new -> instance 생성 -> A 라는 data type = 참조형 data type
+        A a = new A(1);                 //a.ID => 1 을 참조하는 중
+        A b = a;                           // b.ID => 1 을 참조하는 중
+        b.ID = 2;                          // 근데 이후에 b.ID => 2를 참조하라고 명시적으로 수정 => 바뀜 O
+    // A b = new A(2);                     // 하지만, 이렇게 새로운 instance 를 생성하면서 b.ID =>2 참조 시킬때는
+                                           // a 와 b 가 각자 새로운 instance 를 참조하게 되므로 영향을 못미침
+        System.out.println(a.ID);}
+
+    public static void main(String[] args) {
+        runrefer();
+        runvalue();
+    }
+}
+ */
+
+// 메소드 에 대해서도 마찬가지다
+/*
+class A{
+    int ID;
+    A(int ID){
+        this.ID = ID;
+    }
+}
+
+public class oopbasic04 {
+    public static void Basictype(int b){
+        b = 2 ;}
+    public static void runBasictype(){
+        int a = 1;
+        Basictype(a);               // 기본 dataType - a=1 복제 b=a=1 원본값 유지
+        System.out.println(a);}
+
+    public static void refertype(A b){
+        b = new A(2);}
+    public static void runrefertype(){
+        A a = new A(1);             // a.ID => 1 참조중.
+        refertype(a);                   // a.ID => 2로 참조했으나 새로운 instance 에서 각자 한거라 영향 X
+        System.out.println(a.ID);}
+
+    public static void refer2(A b){
+        b.ID = 2;}
+    public static void runrefer2(){
+        A a = new A(1);             // a.ID => 1 참조중
+        refer2(a);                      // a.ID => 2 참조중 (같은 instance - 수정 들어감)
+        System.out.println(a.ID);
+    }
+
+    public static void main(String[] args) {
+        runBasictype();
+        runrefertype();
+        runrefer2();
+    }
+}
+*/
+
+// Generic -> class 내부에서 사용할 data type 을 나중에 instance 를 생성할 때, 확정 하는 것
+// 1. instance 별로 필요한 data type 으로 바꾸어 class 를 사용할 수 있게 함으로서 코드 중복 방지
+// 2. Type safety - 용도와 맞지않는 data type 이 들어가지 않도록 안전보장
+// generic 은 reference 참조형 date type 만 가능 (기본형 X) -> wrapper class 이용
+/*
+class studentinfo{
+    public int grade;
+    studentinfo(int grade){this.grade = grade;}
+}
+
+class person<T, S>{                        //generic 여러개 , 로 가능
+    public T info;
+    public S id;
+    person(T info, S id){
+        this.info = info;
+        this.id = id;
+    }
+    public <U> void printinfo(U info){         //method 도 generic 사용 가능
+        System.out.println("info");         // 접근제어자 <generic> return type 순서
+    }
+}
+
+public class oopbasic04 {
+    public static void main(String[] args) {
+        studentinfo s1 = new studentinfo(1); // 이거 안만들고 s1 자리에 new studentinfo(1) 바로줘도 된다.
+        Integer id = new Integer(2);        //Integer - wrapper class (그냥 바로 2 로 줘도 된다.)
+                                           //(generic 은 기본생성자 못오므로 wrapper class 이용)
+        person<studentinfo, Integer> p1 = new person<studentinfo, Integer>(s1, id);
+        person p2 = new person(s1, id);  // s1 과 id 를 정의하면서, 거기서 data type 을 사실상 알려준 것이기 때문에
+                        //generic 의 생략  => 인자값으로 s1, id 를 넣으면 generic 을 명시하지 않아도 java 가 자동으로 인식한다.
+        System.out.println(p1.info.grade);
+        System.out.println(p1.id.intValue());      //intValue() <- 기본 data type 으로 가져오는 method
+        p1.<studentinfo>printinfo(s1);           // method 출력. generic 생략 가능
+    }
+}
+*/
+
+// generic 의 제한 - 내가 원하는 class 의 자식들만 data type 으로 올 수 있도록 => "extends"
+/*
+abstract class superinfo{                    //abstract 말고도 가능, interface 도 가능 => implements
+    public abstract int getlevel();}
+class studentinfo extends superinfo{
+    public int rank;
+    studentinfo(int rank){
+        this.rank = rank;}
+
+    @Override
+    public int getlevel() {                    //abstract 구체화
+        return this.rank;}
+}
+
+class person<T extends superinfo>{            // generic 의 extends - 구별 (generic 은 interface 여도 extends 로 한다)
+    public T info;                             // 그 자식 class 들 까지만 data type 으로 "제한"
+    person(T info){                             // 외에 다른 data type 못온다
+        this.info = info;
+
+        info.getlevel();          // T 가 studentinfo 까지 extends 하고 있으므로 student info 의 메소드인 getlevel 호출가능
+    }
+
+}
+
+public class oopbasic04 {
+    public static void main(String[] args) {
+        studentinfo s1 = new studentinfo(2);     // 이거 정의안하고 생성자있으니까 바로 인자값 넣어서 가능
+
+        person<studentinfo> p1 = new person<studentinfo>(new studentinfo(2));
+        person p2 = new person(s1);     //생략 가능
+        // person<String> p3 = new person<String>("문자열");     // String 은 superinfo 의 자식이 아니다 - error
+        System.out.println(p1.info.rank);
+        System.out.println(p1.info.getlevel());        //method 값 가져오기
+
+    }
+}
+*/
+
